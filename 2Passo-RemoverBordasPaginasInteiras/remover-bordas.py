@@ -1,5 +1,5 @@
 """
-Propósito: remover as bordas externas das páginas
+Propósito: remover as bordas externas das páginas (diferenciando páginas pares e ímpares)
 Autor: Alexandre Nassar de Peder
 Criação: 02/10/2025
 Atualização: 03/06/2026
@@ -17,6 +17,7 @@ OBS5: execute o código, e abra as imagens para conferir se as bordas foram remo
 
 from PIL import Image
 import os
+import re
 
 pasta_imagens = "imagens-convertidas"
 pasta_saida = "sem-bordas-externas"
@@ -30,7 +31,16 @@ for nome_arquivo in os.listdir(pasta_imagens):
 
         largura, altura = imagem.size
 
-        caixa_corte = (240, 443, largura - 269, altura - 290) # ATUALIZE AQUI OS VALORES DE CORTE (esquerda, superior, direita, inferior)
+        # Extrai o número presente no nome do arquivo (ex: "pagina_enem_10.png" -> 10)
+        numero_pagina = int(re.search(r'\d+', nome_arquivo).group())
+
+        if numero_pagina % 2 == 0:
+            # Página PAR
+            caixa_corte = (269, 442, largura - 240, altura - 291)
+        else:
+            # Página ÍMPAR
+            caixa_corte = (240, 442, largura - 270, altura - 291)
+
         imagem_cortada = imagem.crop(caixa_corte)
 
         caminho_saida = os.path.join(pasta_saida, nome_arquivo)
