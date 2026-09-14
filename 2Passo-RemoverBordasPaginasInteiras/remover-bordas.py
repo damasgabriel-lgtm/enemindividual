@@ -36,7 +36,7 @@ for nome_arquivo in os.listdir(pasta_imagens):
 
         if numero_pagina % 2 == 0:
             # Página PAR
-            caixa_corte = (269, 442, largura - 240, altura - 291)
+            caixa_corte = (270, 442, largura - 240, altura - 291)
         else:
             # Página ÍMPAR
             caixa_corte = (240, 442, largura - 270, altura - 291)
