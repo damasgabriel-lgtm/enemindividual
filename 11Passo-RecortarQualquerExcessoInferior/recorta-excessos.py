@@ -171,4 +171,3 @@ if __name__ == "__main__":
     print("\n" + "="*50)
     print("Processamento concluído!")
     print(f"Todas as imagens foram salvas em: {pasta_destino}")
-    
